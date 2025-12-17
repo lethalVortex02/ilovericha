@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Richa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ffd6f6, #d6e8ff);
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+header {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff3ca6;
+}
+
+nav a {
+  position: relative;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 6px 10px;
+
+  /* fallback color (VERY IMPORTANT) */
+  color: #ff3ca6;
+
+  /* gradient text */
+  background-image: linear-gradient(90deg, #ff3ca6, #ff8dbf);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff3ca6, #ff8dbf);
+  transform: translateX(-50%) scaleX(0);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+nav a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* MAIN CONTENT */
+.section {
+  padding: 50px;
+  text-align: center;
+}
+
+.my-photo {
+  width: 85%;
+  max-width: 420px;
+  border-radius: 20px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+.message-block {
+  max-width: 600px;
+  margin: auto;
+  background: rgba(255,255,255,0.6);
+  padding: 25px;
+  border-radius: 20px;
+}
+
+/* HEARTS + POPPERS */
+#heart-container, #poppers {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* POPUP */
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  z-index: 20;
+}
+
+#popup-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #ff3ca6;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="heart-container"></div>
+<div id="poppers"></div>
+
+<header>
+  <h1>Love Has No Limits ❤️</h1>
+  <nav>
+    <a href="#main">Home</a>
+    <a href="flipbook.html">FlipBook</a>
+  </nav>
+</header>
+
+<!-- POPUP -->
+<div id="popup">
+  <div id="popup-card">
+    <h2>Happy Birthday Richa 🎉</h2>
+    <p>You are the most beautiful part of my life ❤️</p>
+    <button class="btn" onclick="openGift()">Open Gift</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<section id="main" class="section">
+  <h2 style="color:#ff2e9b;font-size:32px;">My Heart For You 💖</h2>
+
+  <!-- IMPORTANT: filename case fixed -->
+  <img src="Happy.png" class="my-photo" alt="My Love">
+
+  <div class="message-block">
+    <h3>My Love Paragraph</h3>
+    <p>
+      Hey my bebee, HAPPPYYY BIRTHDAYYY! 🎉💗<br><br>
+      Ayyy look at you turning 18… hahaha I’m soooo happy for you!  
+      I wanted to make your day a little special, so I made this small surprise for you.
+      It’s not anything crazy, but it’s made with all my heart.<br><br>
+
+      Richa, you really are the best thing that’s ever happened to me.
+      No matter how many ups and downs we go through, we always find our way back to each other.
+      And I love that about us. I love you. ❤️<br><br>
+
+      Enjoy your day, my love.
+      You deserve the entire world and a little extra. 💖✨
+    </p>
+  </div>
+</section>
+
+<script>
+/* HEARTS */
+const heartInterval = setInterval(() => {
+  const heart = document.createElement('div');
+  heart.textContent = '💗';
+  heart.style.position = 'absolute';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.top = '100vh';
+  heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+  heart.style.transition = '5s linear';
+  document.getElementById('heart-container').appendChild(heart);
+  setTimeout(() => heart.style.top = '-10vh', 50);
+  setTimeout(() => heart.remove(), 5000);
+}, 500);
+
+let popping = false;
+
+function openPopup() {
+  document.getElementById('popup').style.display = 'flex';
+  popping = true;
+  poppers();
+}
+
+function openGift() {
+  document.getElementById('popup').style.display = 'none';
+  clearInterval(heartInterval);
+  document.getElementById('heart-container').innerHTML = '';
+  popping = false;
+}
+
+function poppers() {
+  if (!popping) return;
+  for (let i = 0; i < 10; i++) {
+    const p = document.createElement('div');
+    p.textContent = '🎉';
+    p.style.position = 'absolute';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.top = Math.random() * 100 + 'vh';
+    p.style.fontSize = '30px';
+    document.getElementById('poppers').appendChild(p);
+    setTimeout(() => p.remove(), 1000);
+  }
+  setTimeout(poppers, 700);
+}
+
+window.addEventListener('load', openPopup);
+</script>
+
+</body>
+</html>
